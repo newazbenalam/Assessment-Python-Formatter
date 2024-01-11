@@ -14,7 +14,7 @@ def annotationObjects(dataObj):
 
     points = dataObj.get("points", {})
 
-    annotation_objects['license_plate'] = {
+    annotation_objects[dataObj.get("classTitle", "").lower().replace(" ", "_")] = {
         "presence": 1 if points.get("exterior", []) else 0,
         "bbox": [point for sublist in points.get("exterior", []) for point in sublist]
     }
@@ -26,7 +26,7 @@ def annotationAttributes(dataObj):
 
     tags = dataObj.get("tags", [])
     for tag in tags:
-        class_title = dataObj.get("classTitle", "")
+        class_title = dataObj.get("classTitle", "").lower().replace(" ", "_")
         if class_title not in annotation_attributes:
             annotation_attributes[class_title] = {}
 
