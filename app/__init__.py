@@ -44,19 +44,25 @@ def formatJsonDoc(filePath):
             "dataset_name": f"{os.path.basename(filePath)}",
             "image_link": "",
             "annotation_type": annotationType(filePath),
-            "annotation_objects": [],
-            "annotation_attributes": []
+            "annotation_objects": {},
+            "annotation_attributes": {}
         })
 
         if "objects" in data:
             for dataObj in data["objects"]:
-                output[0]["annotation_objects"].append(
-                    annotationObjects(dataObj))
-                output[0]["annotation_attributes"].append(
-                    annotationAttributes(dataObj))
+                class_title = dataObj.get("classTitle", "").lower().replace(" ", "_")
+                annotation_objects = annotationObjects(dataObj)
+                annotation_attributes = annotationAttributes(dataObj)
+                
+                # Update the dictionaries without extra nesting
+                output[0]["annotation_objects"].update({class_title: annotation_objects[class_title]})
+                output[0]["annotation_attributes"].update({class_title: annotation_attributes[class_title]})
         else:
             output[0]["annotation_objects"] = annotation_objects_dict
             output[0]["annotation_attributes"] = annotation_attributes_dict
 
         # print(json.dumps(output, indent=4))
         return json.dumps(output, indent=4)
+
+
+
