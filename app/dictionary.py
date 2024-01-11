@@ -20,6 +20,6 @@ annotation_attributes_dict = {
             "license_plate": {
                 "Difficulty Score": None,
                 "Value": None,
-                "Occlusion": 0
+                "Occlusion": None
             }
         }
