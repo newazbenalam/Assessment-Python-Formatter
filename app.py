@@ -13,4 +13,4 @@ if __name__ == '__main__':
   with open("formatted_"+os.path.basename(args.input), "w") as outfile:
     outfile.write(out)
 
-  print(args.input)
+  print(f"Formatted JSON saved to root folder")
