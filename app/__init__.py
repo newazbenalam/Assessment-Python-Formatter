@@ -45,17 +45,17 @@ def formatJsonDoc(filePath):
             "image_link": "",
             "annotation_type": annotationType(filePath),
             "annotation_objects": annotation_objects_dict,
-            "annotation_attributes": annotation_objects_dict
+            "annotation_attributes": annotation_attributes_dict
         })
-        
-        if "objects" in data:
+
+        if "objects" in data and isinstance(data["objects"], list):
             for dataObj in data["objects"]:
                 class_title = dataObj.get("classTitle", "").lower().replace(" ", "_")
                 annotation_objects = annotationObjects(dataObj)
                 annotation_attributes = annotationAttributes(dataObj)
 
-                output[0]["annotation_objects"].update({class_title: annotation_objects[class_title]})
-                output[0]["annotation_attributes"].update({class_title: annotation_attributes[class_title]})
+                output[0]["annotation_objects"][class_title] = annotation_objects[class_title]
+                output[0]["annotation_attributes"][class_title] = annotation_attributes[class_title]
 
         return json.dumps(output, indent=4)
 
