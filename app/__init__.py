@@ -54,7 +54,6 @@ def formatJsonDoc(filePath):
                 annotation_objects = annotationObjects(dataObj)
                 annotation_attributes = annotationAttributes(dataObj)
                 
-                # Update the dictionaries without extra nesting
                 output[0]["annotation_objects"].update({class_title: annotation_objects[class_title]})
                 output[0]["annotation_attributes"].update({class_title: annotation_attributes[class_title]})
         else:
