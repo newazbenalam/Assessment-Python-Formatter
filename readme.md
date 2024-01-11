@@ -28,5 +28,9 @@ python app.py --input path/to/your/input/file.json
 The formatted JSON will be saved to a file named formatted_input_filename.json in the same directory.
 
 ```
-formatted_example.json
+formatted_file.json
 ```
+
+## Additional Configuration
+
+You may want to customize the behavior of the script by adjusting values in the `dictionary.py` file. This file is responsible for handling `None` value attributes.
