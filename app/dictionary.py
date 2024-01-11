@@ -1,7 +1,3 @@
-def sampleDict():
-    return dict
-
-
 annotation_objects_dict = {
     "vehicle": {
         "presence": 0,
